@@ -7,7 +7,7 @@ let moves = 0,
         [1, 5, 9], 
         [1, 4, 7],
         [4, 5, 6],
-        []
+        [],
     ]
 
 document.addEventListener('DOMContentLoaded', () => {
