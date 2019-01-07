@@ -1,0 +1,47 @@
+#board {
+    padding-top: 3em;
+    text-align: center;
+    display: inline-block;
+  }
+  
+  h1 {
+    color: seagreen;
+  }
+  
+  div > div > div {
+    float: left;
+    height: 100px;
+    width: 100px;
+    display: inline-block;
+  }
+  
+  .row {
+    clear: both;
+    margin: 0 auto;
+    width: 302px;
+  }
+  
+  .top {
+    border-bottom: 2px rgb(46, 183, 162) solid;
+  }
+  
+  .bottom {
+    border-top: 2px rgb(149, 234, 228) solid;
+  }
+  
+  .left {
+    border-right: 1px rgb(18, 140, 167) solid;
+  }
+  
+  .right {
+    border-left: 1px rgb(11, 107, 133) solid;
+  }
+  
+  body {
+    text-align: center;
+    font-family: 'Quicksand', sans-serif;
+  }
+  
+  .row:hover{
+    cursor: pointer;
+  }
