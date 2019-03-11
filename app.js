@@ -1,42 +1,56 @@
+
 let board = document.getElementById('board');
 let cell = document.getElementsByClassName('cell');
 let currentPlayer = 'X';
-let moves = 0,
-    winCombos = [
+let moves = 0;
+let winCombos = [
         [1, 2, 3],
         [1, 5, 9], 
         [1, 4, 7],
         [4, 5, 6],
-        [],
-    ]
-
+        [2, 6, 8],
+        [3, 5, 7],
+        [7, 8, 9],
+        [3, 6, 9],
+    ];
+let winArr = {
+    X: [],
+    O: [],
+};
 document.addEventListener('DOMContentLoaded', () => {
-    board.addEventListener('click', clickedCell);
+    board.addEventListener('click', playGame);
 });
 
-let clickedCell = (e) => {
+let playGame = (e) => {
     e.target.innerText = currentPlayer;
-    switchPlayer();
-    determineWinner();
+    switchPlayer(e);
 };
 
-let switchPlayer = () => {
-    if (currentPlayer === 'X') {
-        currentPlayer = 'O';
+let switchPlayer = (e) => {
+    if (e.innerText = '') {
+        alert("Something is there.")
+    } else if (currentPlayer === 'X') {
         moves++;
+
+        determineWinner(e);
+       return currentPlayer = 'O';
     } else if (currentPlayer === 'O') {
-        currentPlayer = 'X';
         moves++;
-    }
+        determineWinner(e);
+        return currentPlayer = 'X';    
+    } 
 
-    console.log("move" + moves)
 };
 
-let determineWinner = () => {
-    if(moves === 9) {
-        alert('Game over.')
-        //reset();
+let determineWinner = (e) => {
+    let value = parseInt(e.target.attributes[0].value);
+
+    if (currentPlayer === 'X') {
+        winArr.X.push(value);
+    } else if (currentPlayer === 'O') {
+        winArr.O.push(value);
     }
+    console.log(winArr)
 };
 
 let reset = () => {
