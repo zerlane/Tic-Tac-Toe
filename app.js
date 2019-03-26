@@ -22,18 +22,17 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 let playGame = (e) => {
-    e.target.innerText = currentPlayer;
+    e.target.innerHTML = currentPlayer;
     switchPlayer(e);
 };
 
 let switchPlayer = (e) => {
-    if (e.innerText = '') {
+    if (e.innerHTML = '') {
         alert("Something is there.")
     } else if (currentPlayer === 'X') {
         moves++;
-
         determineWinner(e);
-       return currentPlayer = 'O';
+        return currentPlayer = 'O';
     } else if (currentPlayer === 'O') {
         moves++;
         determineWinner(e);
@@ -47,6 +46,9 @@ let determineWinner = (e) => {
 
     if (currentPlayer === 'X') {
         winArr.X.push(value);
+        for (i = 0; i < winCombos; i++) {
+            console.log();
+        }
     } else if (currentPlayer === 'O') {
         winArr.O.push(value);
     }
