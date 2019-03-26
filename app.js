@@ -1,6 +1,6 @@
 
 let board = document.getElementById('board');
-let cell = document.getElementsByClassName('cell');
+let cell = document.querySelectorAll('cell');
 let currentPlayer = 'X';
 let moves = 0;
 let winCombos = [
@@ -13,7 +13,7 @@ let winCombos = [
         [7, 8, 9],
         [3, 6, 9],
     ];
-let winArr = {
+let playerObj = {
     X: [],
     O: [],
 };
@@ -42,17 +42,20 @@ let switchPlayer = (e) => {
 };
 
 let determineWinner = (e) => {
-    let value = parseInt(e.target.attributes[0].value);
-
+    let value = e.target.attributes[0].nodeValue;
+    console.log(value);
+    //console.log(e.target.attributes[0].nodeValue);
     if (currentPlayer === 'X') {
-        winArr.X.push(value);
-        for (i = 0; i < winCombos; i++) {
-            console.log();
-        }
+        console.log(value);
+        
+        //let pushX = playerObj.X.push(value);
+        //console.log(pushX)
+        //console.log('X: ' + playerObj.X.push(value))
+        //return playerObj.X.push(value);
     } else if (currentPlayer === 'O') {
-        winArr.O.push(value);
+        //console.log('O: ' + playerObj.X.push(value))
+       // return playerObj.O.push(value);
     }
-    console.log(winArr)
 };
 
 let reset = () => {
