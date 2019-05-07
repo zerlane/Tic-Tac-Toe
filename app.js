@@ -27,35 +27,34 @@ let playGame = (e) => {
 };
 
 let switchPlayer = (e) => {
+    let value = e.target.attributes[0].nodeValue;
+    determineWinner(e);
+    //console.log(`Switch function: ${value}`);
     if (e.innerHTML = '') {
         alert("Something is there.")
     } else if (currentPlayer === 'X') {
         moves++;
         determineWinner(e);
-        return currentPlayer = 'O';
+        return (currentPlayer = 'O', playerObj.O.push(value));
     } else if (currentPlayer === 'O') {
         moves++;
         determineWinner(e);
-        return currentPlayer = 'X';    
+        return (currentPlayer = 'X', playerObj.X.push(value));    
     } 
-
 };
 
 let determineWinner = (e) => {
-    let value = e.target.attributes[0].nodeValue;
-    console.log(value);
-    //console.log(e.target.attributes[0].nodeValue);
-    if (currentPlayer === 'X') {
-        console.log(value);
-        
-        //let pushX = playerObj.X.push(value);
-        //console.log(pushX)
-        //console.log('X: ' + playerObj.X.push(value))
-        //return playerObj.X.push(value);
-    } else if (currentPlayer === 'O') {
-        //console.log('O: ' + playerObj.X.push(value))
-       // return playerObj.O.push(value);
+    if(playerObj.X.length === 3) {
+    //    winCombos.some(arr => {
+    //        console.log(`${currentPlayer} won`);
+    //        return arr === playerObj.X;
+    //    })
+    winCombos.includes(playerObj.X);
+    console.log('something')
+    } else if (playerObj.O.length === 3) {
+        winCombos.includes(playerObj.O);
     }
+    
 };
 
 let reset = () => {
