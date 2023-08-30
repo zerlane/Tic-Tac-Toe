@@ -1,70 +1,51 @@
-//https://webtips.dev/tic-tac-toe-in-javascript
+const board = document.querySelector('#board');
 
-let gameEnded = false;
-let playerX = {
-    str: 'X',
-    cells: [],
-};
-let playerO = {
-    str: 'O',
-    cells: [],
-};
-let currentPlayer;
+
+let players = {
+    playerX: {
+        str: "X",
+        cells: []
+    },
+    playerO: {
+        str: "O",
+        cells: []
+    }
+}
+
+let currentPlayer = players.playerX;
 let xTurn = true;
 
-let winCombos = [
-    //rows
-    ['0', '1', '2'], ['3', '4', '5'], ['6', '7', '8'],
-
-    //diagonal
-    ['0', '4', '8'], ['2', '4', '6'],
-
-    //columns
-    ['0', '3', '6'], ['1', '4', '7'], ['2', '5', '8']
+const winCombos = [['0', '1', '2'], ['3', '4', '5'], ['6', '7', '8'], 
+    ['0', '3', '6'], ['1', '4', '7'], ['2', '5', '8'], 
+    ['0', '4', '8'], ['2', '4', '6']
 ]
 
-let board = document.getElementById('board');
-
-board.addEventListener("click", event => {
-    let target = event.target;
+let cellClicked = (e) => {
+    let target = e.target;
+    let id = target.id;
     let data_val = target.getAttribute('data-value');
 
-    if (xTurn) {
-        currentPlayer = playerX;
-        xTurn = false;
-    } else {
-        currentPlayer = playerO;
-        xTurn = true;
+    if(target.innerHTML == "" ) {
+        target.innerHTML = currentPlayer.str;
+        currentPlayer.cells.push(data_val);
+
+        if (currentPlayer.cells.length >= 3 ) {
+           console.log(currentPlayer.cells);
+        }
+        
+
+        //switch player
+        currentPlayer = currentPlayer === players.playerX ? players.playerO : players.playerX;
     }
 
-    currentPlayer.cells.push(data_val);
-
-    //check winner here then move to own function
-    // if (currentPlayer.cells.length == 3) {
-    //     winCombos.forEach(arr => {
-    //         if (arr == currentPlayer.cells) {
-    //             console.log(`${currentPlayer.str} won.`)
-    //         }
-    //     })
-    // }
-
-    console.log(target);
-    target.innerHTML = `<p>${currentPlayer.str}</p>`    
-});
-
-let fillBox = () => {
-   
 }
 
-let switchPlayers = () => {
-   
-};
-
-let checkWinner = () => {
-
-    //determine if draw
-};
-
-let resetGame = () => {
-
+let checkWinner = (...arr) => {
+    for(let i = 0; i < winCombos.length; i++) {
+        if(arr == winCombos[i]) {
+            console.log('won');
+        }
+    }
 }
+
+board.addEventListener('click', cellClicked);
